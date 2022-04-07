@@ -1,0 +1,3 @@
+debug: true
+store:
+  type: shoe-store

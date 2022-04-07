@@ -9,12 +9,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@Service
-public class ItemServiceMock implements ItemService {
+public class ShirtItemService implements ItemService {
 
     private static final List<Item> ITEMS = new ArrayList<>(List.of(new Item(UUID.randomUUID(), "Blue shirt", 123L, "","","" ),
-            new Item(UUID.randomUUID(), "Black jeans", 56L,"","",""),
-            new Item(UUID.randomUUID(), "Green hood", 9L, "","","")));
+            new Item(UUID.randomUUID(), "Black shirt", 56L,"","",""),
+            new Item(UUID.randomUUID(), "Green shirt", 9L, "","","")));
 
     @Override
     public List<Item> getItems() {
