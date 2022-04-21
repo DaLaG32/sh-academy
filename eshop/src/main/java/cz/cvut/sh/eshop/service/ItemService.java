@@ -1,16 +1,16 @@
 package cz.cvut.sh.eshop.service;
 
 import cz.cvut.sh.eshop.domain.Item;
-import cz.cvut.sh.eshop.dto.PreviewItem;
+import cz.cvut.sh.eshop.domain.ItemType;
+import cz.cvut.sh.eshop.entity.ItemId;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 public interface ItemService {
-    List<Item> getItems();
+    List<Item> getItems(ItemType itemType);
 
     Item createNew(Item newItem);
 
-    Optional<Item> find(UUID id);
+    Optional<Item> find(ItemId id);
 }
