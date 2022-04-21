@@ -9,6 +9,7 @@ import cz.cvut.sh.eshop.mapper.ItemMapper;
 import cz.cvut.sh.eshop.service.ItemService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/tables")
+@PreAuthorize("hasRole('ROLE_TABLE')")
 @AllArgsConstructor
 public class TableItemController {
 
