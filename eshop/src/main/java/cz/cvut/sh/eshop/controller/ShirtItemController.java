@@ -9,10 +9,12 @@ import cz.cvut.sh.eshop.mapper.ItemMapper;
 import cz.cvut.sh.eshop.service.ItemService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +28,7 @@ public class ShirtItemController {
     private final ItemService itemService;
     private final ItemMapper itemMapper;
 
-    @GetMapping
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<PreviewItem>> getItems() {
         return ResponseEntity.ok(this.itemService.getItems(ItemType.SHIRT)
                 .stream()
@@ -39,7 +41,8 @@ public class ShirtItemController {
         final var newItem = this.itemMapper.map(createItemDto)
                 .withType(ItemType.SHIRT);
         final var saved = this.itemService.createNew(newItem);
-        return ResponseEntity.ok(this.itemMapper.toDetail(saved));
+        return ResponseEntity.created(URI.create("/shirts" + saved.getId().asString()))
+                .body(this.itemMapper.toDetail(saved));
     }
 
     @GetMapping("/{id}")
